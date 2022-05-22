@@ -31,25 +31,35 @@ public class Kogtewran extends HogwartsStudents{
         return creativity;
     }
 
-    public static void showKogtewranStudents(Kogtewran [] kogtewransStudents) {
-        System.out.println();
-        System.out.println("Студенты Когтевран:");
-        System.out.println("Когтевранцы умны, мудры, остроумны и полны творчества.");
+    @Override
+    public String toString() {
+        return super.toString() + " Всем студентам Когтеврана присущи -" +
+                " ум: " + smart +
+                ", мудрость: " + wise +
+                ", остроумие: " + witty +
+                ", творчество: " + creativity;
+    }
+
+    public static void showStudentInfo(Kogtewran [] kogtewransStudents) {
+        System.out.println("Факультет Когтевран:");
         for (int i = 0; i < kogtewransStudents.length; i++) {
-            System.out.println("У Студента - " + kogtewransStudents[i].toString() +
-                    " Ум: " + kogtewransStudents[i].smart+
-                    " Мудрость: " + kogtewransStudents[i].wise +
-                    " Остроумие: " + kogtewransStudents[i].witty +
-                    " Творчество: " + kogtewransStudents[i].creativity);
+            if (kogtewransStudents[i] != null) {
+                kogtewransStudents[i].print();
+            }
         }
     }
+
+    @Override
+    public int abilityFaculty() {
+        return smart + wise + witty + creativity;
+    }
+
     public static void checkBestStudent(Kogtewran[] kogtewrans) {
         int bestScore = 0;
         int score = 0;
         String bestStudentName = null;
         for (int i = 0; i < kogtewrans.length; i++) {
-            score = kogtewrans[i].getMagicPower()+kogtewrans[i].getTeleportDistance()+
-                    + kogtewrans[i].getSmart() + kogtewrans[i].getWise() + kogtewrans[i].getWitty() + kogtewrans[i].getCreativity();
+            score = kogtewrans[i].abilityFaculty();
             if (bestScore < score){
                 bestScore = score;
                 bestStudentName = kogtewrans[i].getFullName();

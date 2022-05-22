@@ -36,27 +36,37 @@ public class Slizerin extends HogwartsStudents{
         return dominate;
     }
 
-    public static void showSlizerinStudents(Slizerin [] slizerinStudents) {
-        System.out.println();
-        System.out.println("Студенты Слизерин:");
-        System.out.println("Всем ученикам Слизерина присущи хитрость, решительность, амбициозность, находчивость и жажда власти.");
+    @Override
+    public String toString() {
+        return super.toString() + " Всем студентам Слизерина присущи -" +
+                " хитрость: " + cunning +
+                ", решительность: " + determination +
+                ", амбициозность: " + ambition +
+                ", находчивость: " + resourcefulness +
+                ", жажда власти: " + dominate
+                ;
+    }
+
+    public static void showStudentInfo(Slizerin [] slizerinStudents) {
+        System.out.println("Факультет Слизерин:");
         for (int i = 0; i < slizerinStudents.length; i++) {
-            System.out.println("У Студента: " + slizerinStudents[i].toString() +
-                    " Хитрость: " + slizerinStudents[i].cunning +
-                    " Решительность: " + slizerinStudents[i].determination +
-                    " Амбициозность: " + slizerinStudents[i].ambition +
-                    " Находчивость: " + slizerinStudents[i].resourcefulness +
-                    " Жажда власти: " + slizerinStudents[i].dominate);
+            if (slizerinStudents[i] != null) {
+                slizerinStudents[i].print();
+            }
         }
     }
+
+    @Override
+    public int abilityFaculty() {
+        return cunning + determination + ambition + resourcefulness + dominate;
+    }
+
     public static void checkBestStudent(Slizerin[] slizerins) {
         int bestScore = 0;
         int score = 0;
         String bestStudentName = null;
         for (int i = 0; i < slizerins.length; i++) {
-            score = slizerins[i].getMagicPower()+slizerins[i].getTeleportDistance()+
-                    + slizerins[i].getCunning() + slizerins[i].getDetermination() + slizerins[i].getAmbition() +
-                    slizerins[i].getResourcefulness() + slizerins[i].getDominate();
+            score = slizerins[i].abilityFaculty();
             if (bestScore < score){
                 bestScore = score;
                 bestStudentName = slizerins[i].getFullName();

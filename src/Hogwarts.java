@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Hogwarts {
     public static void main(String[] args) {
         Griffindor [] griffindorsStudents = {
@@ -22,20 +24,18 @@ public class Hogwarts {
         };
 
 
+        Griffindor.showStudentInfo(griffindorsStudents);
+        Puffindui.showStudentInfo(puffinduisStudents);
+        Kogtewran.showStudentInfo(kogtewransStudents);
+        Slizerin.showStudentInfo(slizerinsStudents);
 
-
-
-        Griffindor.showGriffindorStudents(griffindorsStudents);
-        Puffindui.showPuffinduiStudents(puffinduisStudents);
-        Kogtewran.showKogtewranStudents(kogtewransStudents);
-        Slizerin.showSlizerinStudents(slizerinsStudents);
         System.out.println();
         Griffindor.checkBestStudent(griffindorsStudents);
         Puffindui.checkBestStudent(puffinduisStudents);
         Kogtewran.checkBestStudent(kogtewransStudents);
         Slizerin.checkBestStudent(slizerinsStudents);
         System.out.println();
-        HogwartsStudents.checkStudentsPower(griffindorsStudents, "Гарри Поттер", kogtewransStudents, "Падма Патил" );
+        HogwartsStudents.checkStudentsPower(griffindorsStudents, "Гарри Поттер", slizerinsStudents, "Драко Малфой" );
 
 
 

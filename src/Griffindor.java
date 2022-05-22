@@ -26,16 +26,28 @@ public class Griffindor extends HogwartsStudents {
         return courage;
     }
 
-    public static void showGriffindorStudents(Griffindor [] griffindorStudents) {
-        System.out.println();
-        System.out.println("Студенты Гриффиндора:");
-        System.out.println("Всем Гриффиндорцам присущи благородство, честь и храбрость");
-        for (int i = 0; i < griffindorStudents.length; i++) {
-            System.out.println("У Студента - " + griffindorStudents[i].toString() +
-                    " Благородство: " + griffindorStudents[i].nobleness +
-                    " Честь: " + griffindorStudents[i].honor +
-                    " Храбрость: " + griffindorStudents[i].courage);
+    @Override
+    public String toString() {
+        return super.toString()+" Всем студентам Гриффиндора присущи -" +
+                " Благородство: " + nobleness +
+                ", честь: " + honor +
+                ", храбрость: " + courage +
+                '}';
+    }
+
+
+    public static void showStudentInfo(Griffindor [] griffindorsStudent) {
+        System.out.println("Факультет Гриффиндор:");
+        for (int i = 0; i < griffindorsStudent.length; i++) {
+            if (griffindorsStudent[i] != null) {
+                griffindorsStudent[i].print();
+            }
         }
+    }
+
+    @Override
+    public int abilityFaculty() {
+        return nobleness + honor + courage;
     }
 
     public static void checkBestStudent(Griffindor[] griffindors) {
@@ -43,8 +55,7 @@ public class Griffindor extends HogwartsStudents {
         int score = 0;
         String bestStudentName = null;
         for (int i = 0; i < griffindors.length; i++) {
-            score = griffindors[i].getMagicPower()+griffindors[i].getTeleportDistance()+
-                    + griffindors[i].getNobleness() + griffindors[i].getHonor() + griffindors[i].getCourage();
+            score = griffindors[i].abilityFaculty();
             if (bestScore < score){
                 bestScore = score;
                 bestStudentName = griffindors[i].getFullName();

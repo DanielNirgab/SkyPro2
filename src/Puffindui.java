@@ -24,24 +24,34 @@ public class Puffindui extends HogwartsStudents{
         return honest;
     }
 
-    public static void showPuffinduiStudents(Puffindui [] PuffinduiStudents) {
-        System.out.println();
-        System.out.println("Студенты Пуффиндуй:");
-        System.out.println("Студенты Пуффендуя трудолюбивы, верны, честны.");
-        for (int i = 0; i < PuffinduiStudents.length; i++) {
-            System.out.println("У Студента - " + PuffinduiStudents[i].toString() +
-                    " Трудолюбие: " + PuffinduiStudents[i].hardworking +
-                    " Верность: " + PuffinduiStudents[i].loyal +
-                    " Честность: " + PuffinduiStudents[i].honest);
+    @Override
+    public String toString() {
+        return super.toString() + " Всем студентам Пуффендуя присущи -" +
+                " труболюбие: " + hardworking +
+                ", верность: " + loyal +
+                ", честность: " + honest;
+    }
+
+    @Override
+    public int abilityFaculty() {
+        return hardworking + loyal + honest;
+    }
+
+    public static void showStudentInfo(Puffindui [] puffinduisStudents) {
+        System.out.println("Факультет Пуфиндуй:");
+        for (int i = 0; i < puffinduisStudents.length; i++) {
+            if (puffinduisStudents[i] != null) {
+                puffinduisStudents[i].print();
+            }
         }
     }
+
     public static void checkBestStudent(Puffindui[] puffinduis) {
         int bestScore = 0;
         int score = 0;
         String bestStudentName = null;
         for (int i = 0; i < puffinduis.length; i++) {
-            score = puffinduis[i].getMagicPower()+puffinduis[i].getTeleportDistance()+
-                    + puffinduis[i].getHardworking() + puffinduis[i].getLoyal() + puffinduis[i].getHonest();
+            score = puffinduis[i].abilityFaculty();
             if (bestScore < score){
                 bestScore = score;
                 bestStudentName = puffinduis[i].getFullName();

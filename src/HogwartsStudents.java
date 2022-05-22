@@ -1,5 +1,3 @@
-import java.util.Objects;
-
 abstract public class HogwartsStudents {
     private String fullName;
     private int magicPower;
@@ -47,18 +45,13 @@ abstract public class HogwartsStudents {
 
     @Override
     public String toString() {
-        return "Имя Студента: " + '\'' + getFullName() + '\'' +
-                ", Магическая сила'" + getMagicPower() + '\'' +
-                ", Дистанция телепорта'" +  getTeleportDistance() + '\'';
+        return "Имя Студента: " + getFullName() +
+                ", Магическая сила " + getMagicPower()  +
+                ", Дистанция телепорта " +  getTeleportDistance();
     }
 
-    public static void showStudentInfo(HogwartsStudents [] hogwartsStudents) {
-        for (int i = 0; i < hogwartsStudents.length; i++) {
-            if (hogwartsStudents[i] != null) {
-                System.out.println(hogwartsStudents.toString());
-
-            }
-        }
+    public void print() {
+        System.out.println(this);
     }
 
     public static HogwartsStudents findStudent(HogwartsStudents [] hogwartsStudents, String fullName) {
@@ -76,12 +69,14 @@ abstract public class HogwartsStudents {
         int scoreStudent1 = 0;
         int scoreStudent2 = 0;
         if (st2 != null && st1 != null) {
-            scoreStudent1 = st1.getMagicPower() + st1.getTeleportDistance();
-            scoreStudent2 = st2.getMagicPower() + st2.getTeleportDistance();
+            scoreStudent1 = st1.abilityMagic();
+            scoreStudent2 = st2.abilityMagic();
             if (scoreStudent1 > scoreStudent2) {
                 System.out.println(st1.getFullName() + " с мощью " + scoreStudent1 + " Обладает большей мощностью чем " + st2.getFullName() + " на " + (scoreStudent1 - scoreStudent2));
-            } else {
+            } else if (scoreStudent1 < scoreStudent2){
                 System.out.println(st2.getFullName() + " с мощью " + scoreStudent2 + " Обладает большей мощностью чем " + st1.getFullName() + " на " + (scoreStudent2 - scoreStudent1));
+            } else {
+                System.out.println(st2.getFullName() + " с мощью " + scoreStudent2 + " Обладает такой же мощность чем " + st1.getFullName());
             }
         } else {
             System.out.println("Не найдено студентов");
@@ -89,7 +84,10 @@ abstract public class HogwartsStudents {
         }
 
     }
-    //    abstract public void makeMagic ();
+        public  int abilityMagic() {
+        return magicPower+teleportDistance;
+        }
+        abstract public int abilityFaculty();
 //    abstract public void teleport();
 
 }
